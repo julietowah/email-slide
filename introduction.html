@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1: Introduction to VA Industry</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .presentation {
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 16/9;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 50px 70px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Title Slide */
+    .slide.title-slide {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide.title-slide h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .slide.title-slide .subtitle {
+      font-size: 1.6em;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .module-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9em;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    /* Section Intro Slides */
+    .slide.section-intro {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      justify-content: center;
+    }
+
+    .slide.section-intro h2 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: white;
+      border: none;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .slide.section-intro .section-icon {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+
+    /* Regular Slides */
+    .slide h2 {
+      font-size: 2.2em;
+      color: #667eea;
+      margin-bottom: 25px;
+      border-bottom: 4px solid #764ba2;
+      padding-bottom: 12px;
+    }
+
+    .slide h3 {
+      font-size: 1.4em;
+      color: #4facfe;
+      margin: 20px 0 12px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide h4 {
+      font-size: 1.2em;
+      color: #2c5364;
+      margin: 15px 0 10px 0;
+    }
+
+    .slide p, .slide li {
+      font-size: 1.05em;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .slide ul {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+
+    .slide li {
+      margin-bottom: 10px;
+      padding-left: 5px;
+    }
+
+    .slide li strong {
+      color: #667eea;
+    }
+
+    .content-scroll {
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 10px;
+    }
+
+    .content-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .content-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .content-scroll::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 10px;
+    }
+
+    .icon {
+      font-size: 1.3em;
+      margin-right: 10px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%);
+      border-left: 5px solid #4facfe;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .value-box {
+      background: #f0fdf4;
+      border-left: 5px solid #10b981;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      margin: 20px 0;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-size: 1.1em;
+    }
+
+    .comparison-table td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .myth-column {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    .reality-column {
+      color: #059669;
+      font-weight: 600;
+    }
+
+    .niche-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 10px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .niche-card h4 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .niche-card p {
+      color: white;
+      opacity: 0.95;
+      font-size: 0.95em;
+      margin-bottom: 8px;
+    }
+
+    .niche-card .example {
+      background: rgba(255,255,255,0.2);
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    .skill-badge {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      margin: 5px;
+      font-size: 0.95em;
+      font-weight: 600;
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .equipment-item {
+      background: #f0f9ff;
+      border-left: 4px solid #0ea5e9;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .equipment-item strong {
+      color: #0369a1;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* Navigation */
+    .nav-buttons {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .nav-buttons button {
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      background: #667eea;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .nav-buttons button:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+    }
+
+    .nav-buttons button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .slide-counter {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      font-size: 1em;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .title-slide .slide-counter,
+    .section-intro .slide-counter {
+      color: white;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .slide {
+        padding: 35px 25px;
+      }
+
+      .slide h2 {
+        font-size: 1.8em;
+      }
+
+      .two-column,
+      .equipment-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation">
+    <!-- Slide 1: Title -->
+    <div class="slide title-slide active">
+      <div class="module-badge">MODULE 1</div>
+      <h1>💻 Introduction to the Virtual Assistant Industry</h1>
+      <div class="subtitle">Foundation Skills for Professional VA Success</div>
+    </div>
+
+    <!-- Slide 2: Module Overview -->
+    <div class="slide">
+      <h2>Module 1 Overview</h2>
+      <div class="content-scroll">
+        <p>This module provides the foundational knowledge you need to understand and enter the Virtual Assistant industry with confidence.</p>
+        
+        <div class="highlight-box">
+          <h3>📚 What You'll Learn:</h3>
+          <ul>
+            <li>What a Virtual Assistant is and why businesses need them</li>
+            <li>Different types of VA specializations and niches</li>
+            <li>Essential soft skills that separate great VAs from average ones</li>
+            <li>How to set up a professional home office environment</li>
+          </ul>
+        </div>
+
+        <div class="value-box">
+          <strong>💡 Key Insight:</strong> The VA industry is growing rapidly as more businesses embrace remote work. This creates massive opportunities for skilled professionals who can deliver value from anywhere in the world.
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 Intro -->
+    <div class="slide section-intro">
+      <div class="section-icon">💡</div>
+      <h2>Understanding the VA Role</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">What is a Virtual Assistant and why do businesses need them?</p>
+    </div>
+
+    <!-- Slide 3: What is a VA? -->
+    <div class="slide">
+      <h2>What is a Virtual Assistant?</h2>
+      <div class="content-scroll">
+        <div class="highlight-box">
+          <p><strong>Definition:</strong> A Virtual Assistant (VA) is an independent professional who provides administrative, technical, or creative support to individuals or businesses remotely — usually from a home office or co-working space.</p>
+        </div>
+
+        <h3>🔑 Key Characteristics:</h3>
+        <ul>
+          <li><strong>Independent Professional:</strong> Work as a contractor or freelancer, not an employee</li>
+          <li><strong>Remote Work:</strong> Deliver services from anywhere in the world</li>
+          <li><strong>Specialized Support:</strong> Focus on specific skills and services</li>
+          <li><strong>Flexible Arrangements:</strong> Part-time, full-time, project-based, or retainer models</li>
+        </ul>
+
+        <p style="margin-top: 20px;">Instead of hiring full-time, in-house employees, companies outsource specific tasks to VAs. This provides both flexibility and cost-efficiency for businesses of all sizes.</p>
+      </div>
+    </div>
+
+    <!-- Slide 4: Value Proposition -->
+    <div class="slide">
+      <h2>The Value Proposition</h2>
+      <div class="content-scroll">
+        <div class="two-column">
+          <div class="value-box">
+            <h4>✅ For Clients:</h4>
+            <ul>
+              <li><strong>Saves Time:</strong> Delegate repetitive tasks like scheduling, emails, data management</li>
+              <li><strong>Reduces Costs:</strong> No office space, benefits, or equipment expenses</li>
+              <li><strong>Global Talent:</strong> Hire skilled professionals worldwide at competitive rates</li>
+              <li><strong>Scalability:</strong> Easily scale support up or down based on needs</li>
+            </ul>
+          </div>
+
+          <div class="value-box">
+            <h4>✨ For VAs:</h4>
+            <ul>
+              <li><strong>Flexibility:</strong> Work from home, café, or while traveling</li>
+              <li><strong>Work-Life Balance:</strong> Choose your hours and workload</li>
+              <li><strong>Entrepreneurial Freedom:</strong> Set rates, choose clients, decide work type</li>
+              <li><strong>Professional Growth:</strong> Gain exposure to multiple industries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Myths vs Reality -->
+    <div class="slide">
+      <h2>🧠 Myths vs. Realities</h2>
+      <div class="content-scroll">
+        <table class="comparison-table">
+          <tr>
+            <th>Myth</th>
+            <th>Reality</th>
+          </tr>
+          <tr>
+            <td class="myth-column">VAs only do data entry or basic tasks</td>
+            <td class="reality-column">Many VAs specialize in high-value skills like social media management, bookkeeping, project coordination, and customer support</td>
+          </tr>
+          <tr>
+            <td class="myth-column">Becoming a VA is a quick way to make easy money</td>
+            <td class="reality-column">It requires skill development, consistent client outreach, and business professionalism</td>
+          </tr>
+          <tr>
+            <td class="myth-column">You can work in pajamas all day with no structure</td>
+            <td class="reality-column">Success depends on discipline, professionalism, and clear boundaries between home and work life</td>
+          </tr>
+          <tr>
+            <td class="myth-column">VAs are just "online secretaries"</td>
+            <td class="reality-column">VAs are strategic partners who help clients grow their businesses efficiently</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2 Intro -->
+    <div class="slide section-intro">
+      <div class="section-icon">🗂️</div>
+      <h2>Types of Virtual Assistants</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Specializing helps you stand out and charge higher rates</p>
+    </div>
+
+    <!-- Slide 6: VA Niches 1 -->
+    <div class="slide">
+      <h2>Common VA Niches (Part 1)</h2>
+      <div class="content-scroll">
+        <div class="niche-card">
+          <h4>1. 📋 Administrative VA</h4>
+          <p>Manages calendars, emails, meeting notes, travel bookings, and reports.</p>
+          <p>Ideal for clients needing help with day-to-day organization and communication.</p>
+          <div class="example">Example: Managing a CEO's inbox and ensuring follow-ups on key emails</div>
+        </div>
+
+        <div class="niche-card">
+          <h4>2. 👔 Executive VA</h4>
+          <p>Works closely with executives on high-level tasks and sensitive information.</p>
+          <p>Handles confidential projects, prepares presentations, manages strategic partnerships.</p>
+          <div class="example">Example: Coordinating meetings across multiple time zones and managing board presentations</div>
+        </div>
+
+        <div class="niche-card">
+          <h4>3. 📱 Social Media VA</h4>
+          <p>Plans and schedules posts, engages with followers, tracks analytics.</p>
+          <p>Uses tools like Buffer, Canva, or Hootsuite.</p>
+          <div class="example">Example: Creating weekly Instagram content calendars for a brand</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: VA Niches 2 -->
+    <div class="slide">
+      <h2>Common VA Niches (Part 2)</h2>
+      <div class="content-scroll">
+        <div class="niche-card">
+          <h4>4. 💻 Technical VA</h4>
+          <p>Provides tech support: website maintenance, CRM updates, automation.</p>
+          <p>Requires familiarity with WordPress, Zapier, or HubSpot.</p>
+          <div class="example">Example: Setting up automated email workflows or fixing plugin issues</div>
+        </div>
+
+        <div class="niche-card">
+          <h4>5. 🛒 E-Commerce VA</h4>
+          <p>Manages online stores (Shopify, Amazon, Etsy), processes orders, handles returns.</p>
+          <div class="example">Example: Uploading product listings, writing descriptions, tracking stock levels</div>
+        </div>
+
+        <div class="niche-card">
+          <h4>6. 📊 Marketing VA</h4>
+          <p>Supports email campaigns, ad management, lead generation.</p>
+          <p>Works with Mailchimp, Google Ads, Meta Business Suite.</p>
+          <div class="example">Example: Creating and scheduling promotional newsletters</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Creative VA -->
+    <div class="slide">
+      <h2>Additional Specialization</h2>
+      <div class="content-scroll">
+        <div class="niche-card">
+          <h4>7. 🎨 Creative VA</h4>
+          <p>Focuses on design, writing, or multimedia creation.</p>
+          <p>Skills include graphic design, content writing, video editing.</p>
+          <div class="example">Example: Designing branded templates in Canva or editing short videos for social media</div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 30px;">
+          <h3>💡 Pro Tip: Finding Your Niche</h3>
+          <p>Consider your existing skills, interests, and what services are in high demand. You can start as a generalist and specialize over time as you discover what you enjoy and what clients need most.</p>
+          <p style="margin-top: 10px;"><strong>Remember:</strong> Specialized VAs can charge 50-100% more than general VAs!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 Intro -->
+    <div class="slide section-intro">
+      <div class="section-icon">🌟</div>
+      <h2>Essential VA Soft Skills</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">What separates great VAs from average ones</p>
+    </div>
+
+    <!-- Slide 9: Soft Skills Intro -->
+    <div class="slide">
+      <h2>Why Soft Skills Matter</h2>
+      <div class="content-scroll">
+        <div class="highlight-box">
+          <p><strong>Critical Truth:</strong> Soft skills often determine whether clients retain you long-term. Technical skills can be taught — but professionalism, attitude, and reliability are what truly set great VAs apart.</p>
+        </div>
+
+        <h3>🌟 The 5 Key Soft Skills</h3>
+        <div style="margin-top: 20px;">
+          <span class="skill-badge">1. Communication</span>
+          <span class="skill-badge">2. Proactiveness</span>
+          <span class="skill-badge">3. Reliability</span>
+          <span class="skill-badge">4. Problem-Solving</span>
+          <span class="skill-badge">5. Attention to Detail</span>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 1.1em;">Let's explore each of these essential skills in detail...</p>
+      </div>
+    </div>
+
+    <!-- Slide 10: Communication -->
+    <div class="slide">
+      <h2>1. Communication 💬</h2>
+      <div class="content-scroll">
+        <h3>What It Means:</h3>
+        <ul>
+          <li>Be <strong>clear, professional, and concise</strong> in all interactions</li>
+          <li>Use friendly but professional language in emails, chat apps, and meetings</li>
+          <li>Respond promptly to messages and requests</li>
+          <li>Ask clarifying questions when instructions are unclear</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h4>✅ Good Example:</h4>
+          <p>"Hi [Client Name], I've completed the report and attached it below. I've highlighted the key findings in the summary section. Please review and let me know if you'd like any adjustments. I'm available for a quick call if you have questions."</p>
+        </div>
+
+        <div class="value-box" style="background: #fef2f2; border-color: #ef4444;">
+          <h4>❌ Poor Example:</h4>
+          <p>"Done. Check attachment."</p>
+        </div>
+
+        <p style="margin-top: 15px;"><strong>Key Principle:</strong> Always communicate as if you're building a long-term professional relationship — because you are!</p>
+      </div>
+    </div>
+
+    <!-- Slide 11: Proactiveness -->
+    <div class="slide">
+      <h2>2. Proactiveness 🚀</h2>
+      <div class="content-scroll">
+        <h3>What It Means:</h3>
+        <ul>
+          <li>Don't just wait for instructions — <strong>anticipate needs</strong></li>
+          <li>Suggest improvements or identify issues before they become problems</li>
+          <li>Look for ways to add value beyond the immediate task</li>
+          <li>Take initiative to learn new skills relevant to your client's needs</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h4>✅ Proactive VA Example:</h4>
+          <p>"I noticed some customers are asking the same question repeatedly about our return policy. Would you like me to draft a FAQ page for the website? I could have it ready by Friday."</p>
+        </div>
+
+        <div class="highlight-box">
+          <h4>✅ Another Example:</h4>
+          <p>"While organizing your calendar, I saw we have three meetings scheduled on the same day next week. Would you like me to reschedule one to Thursday to give you more breathing room?"</p>
+        </div>
+
+        <p style="margin-top: 15px;"><strong>Impact:</strong> Proactive VAs become invaluable partners, not just task executors.</p>
+      </div>
+    </div>
+
+    <!-- Slide 12: Reliability -->
+    <div class="slide">
+      <h2>3. Reliability ⏰</h2>
+      <div class="content-scroll">
+        <h3>What It Means:</h3>
+        <ul>
+          <li><strong>Deliver tasks on or before deadlines</strong></li>
+          <li>Communicate promptly if there are delays or challenges</li>
+          <li>Build trust by maintaining confidentiality</li>
+          <li>Be consistent in quality and availability</li>
+          <li>Follow through on commitments — every time</li>
+        </ul>
+
+        <div class="two-column">
+          <div class="value-box">
+            <h4>✅ Reliable Behaviors:</h4>
+            <ul>
+              <li>Meeting every deadline</li>
+              <li>Communicating delays early</li>
+              <li>Being available during agreed hours</li>
+              <li>Consistent work quality</li>
+            </ul>
+          </div>
+
+          <div class="value-box" style="background: #fef2f2; border-color: #ef4444;">
+            <h4>❌ Unreliable Behaviors:</h4>
+            <ul>
+              <li>Missing deadlines without notice</li>
+              <li>Inconsistent communication</li>
+              <li>Variable work quality</li>
+              <li>Last-minute cancellations</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="margin-top: 15px;"><strong>Remember:</strong> Your reputation as a VA is built on reliability. One missed deadline can damage trust that took months to build.</p>
+      </div>
+    </div>
+
+    <!-- Slide 13: Problem-Solving -->
+    <div class="slide">
+      <h2>4. Problem-Solving 🧩</h2>
+      <div class="content-scroll">
+        <h3>What It Means:</h3>
+        <ul>
+          <li>Be <strong>resourceful</strong>: Google solutions, learn new tools quickly</li>
+          <li>Adapt to unexpected challenges without panic</li>
+          <li>Try multiple approaches before escalating issues</li>
+          <li>Document solutions for future reference</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h4>✅ Problem-Solving Example:</h4>
+          <p><strong>Situation:</strong> A file format doesn't upload to the client's platform.</p>
+          <p><strong>Poor Response:</strong> "The file won't upload. What should I do?"</p>
+          <p><strong>Great Response:</strong> "The original PDF wasn't uploading, so I converted it to a different format and compressed the file size. It uploaded successfully. I've tested it and everything looks correct."</p>
+        </div>
+
+        <p style="margin-top: 20px;"><strong>Key Principle:</strong> Clients hire VAs to solve problems, not create more work. Always try to find solutions before asking for help.</p>
+      </div>
+    </div>
+
+    <!-- Slide 14: Attention to Detail -->
+    <div class="slide">
+      <h2>5. Attention to Detail 🔍</h2>
+      <div class="content-scroll">
+        <h3>What It Means:</h3>
+        <ul>
+          <li><strong>Double-check everything</strong> before submission</li>
+          <li>Verify spelling, grammar, formatting, and accuracy</li>
+          <li>Follow client preferences and brand guidelines precisely</li>
+          <li>Catch errors that others might miss</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h4>Areas Requiring Extra Attention:</h4>
+          <div class="two-column">
+            <ul>
+              <li>Email addresses and names</li>
+              <li>Dates and times (especially time zones)</li>
+              <li>Numbers and financial data</li>
+              <li>Links and attachments</li>
+            </ul>
+            <ul>
+              <li>Brand colors and fonts</li>
+              <li>Client-specific terminology</li>
+              <li>Document formatting</li>
+              <li>Meeting details</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="value-box">
+          <strong>Impact:</strong> Attention to detail builds credibility and minimizes rework. It's the difference between "good enough" and "excellent."
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4 Intro -->
+    <div class="slide section-intro">
+      <div class="section-icon">🏠</div>
+      <h2>Setting Up Your Home Office</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Create a professional workspace that enhances productivity</p>
+    </div>
+
+    <!-- Slide 15: Equipment Essentials -->
+    <div class="slide">
+      <h2>🖥️ Equipment Essentials</h2>
+      <div class="content-scroll">
+        <div class="equipment-grid">
+          <div class="equipment-item">
+            <strong>💻 Reliable Computer</strong>
+            <p>Fast laptop or desktop with at least 8GB RAM and modern operating system</p>
+          </div>
+
+          <div class="equipment-item">
+            <strong>🪑 Ergonomic Setup</strong>
+            <p>Comfortable chair, proper desk height, good lighting to prevent strain</p>
+          </div>
+
+          <div class="equipment-item">
+            <strong>🎧 Headset/Microphone</strong>
+            <p>Clear audio quality for meetings and calls (noise-canceling preferred)</p>
+          </div>
+
+          <div class="equipment-item">
+            <strong>💾 Backup Storage</strong>
+            <p>External hard drive or cloud storage (Google Drive, Dropbox) for file security</p>
+          </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 20px;">
+          <h3>🌐 Reliable Internet (Critical!)</h3>
+          <ul>
+            <li><strong>Minimum:</strong> 20 Mbps download/upload speed</li>
+            <li><strong>Recommended:</strong> 50+ Mbps for video calls and large file transfers</li>
+            <li><strong>Backup Plan:</strong> Mobile hotspot or secondary provider</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 16: Professional Environment
