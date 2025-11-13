@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2: Core Administrative & Productivity Skills</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .presentation {
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 16/9;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 50px 70px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Title Slide */
+    .slide.title-slide {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide.title-slide h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .slide.title-slide .subtitle {
+      font-size: 1.6em;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .module-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.9em;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    /* Section Intro Slides */
+    .slide.section-intro {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      color: white;
+      justify-content: center;
+    }
+
+    .slide.section-intro h2 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: white;
+      border: none;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .slide.section-intro .section-icon {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+
+    /* Regular Slides */
+    .slide h2 {
+      font-size: 2.2em;
+      color: #f093fb;
+      margin-bottom: 25px;
+      border-bottom: 4px solid #f5576c;
+      padding-bottom: 12px;
+    }
+
+    .slide h3 {
+      font-size: 1.4em;
+      color: #fa709a;
+      margin: 20px 0 12px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide h4 {
+      font-size: 1.2em;
+      color: #d946ef;
+      margin: 15px 0 10px 0;
+    }
+
+    .slide p, .slide li {
+      font-size: 1.05em;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .slide ul {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+
+    .slide li {
+      margin-bottom: 10px;
+      padding-left: 5px;
+    }
+
+    .slide li strong {
+      color: #f093fb;
+    }
+
+    .content-scroll {
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 10px;
+    }
+
+    .content-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .content-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .content-scroll::-webkit-scrollbar-thumb {
+      background: #f093fb;
+      border-radius: 10px;
+    }
+
+    .icon {
+      font-size: 1.3em;
+      margin-right: 10px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fce7f3 0%, #fff1f2 100%);
+      border-left: 5px solid #f5576c;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .best-practices-box {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    .tools-box {
+      background: #eff6ff;
+      border-left: 5px solid #3b82f6;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-table {
+      width: 100%;
+      margin: 20px 0;
+      border-collapse: collapse;
+      font-size: 0.95em;
+    }
+
+    .summary-table th {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 12px 10px;
+      text-align: left;
+      font-size: 1em;
+    }
+
+    .summary-table td {
+      padding: 10px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    .summary-table tr:nth-child(even) {
+      background: #fef2f2;
+    }
+
+    .skill-card {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 10px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .skill-card h4 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .skill-card p {
+      color: white;
+      opacity: 0.95;
+      font-size: 0.95em;
+      margin-bottom: 8px;
+    }
+
+    .skill-card ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    .skill-card li {
+      color: white;
+      opacity: 0.95;
+    }
+
+    /* Navigation */
+    .nav-buttons {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .nav-buttons button {
+      padding: 12px 24px;
+      font-size: 1em;
+      border: none;
+      background: #f093fb;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+    }
+
+    .nav-buttons button:hover {
+      background: #f5576c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+    }
+
+    .nav-buttons button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .slide-counter {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      font-size: 1em;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .title-slide .slide-counter,
+    .section-intro .slide-counter {
+      color: white;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .slide {
+        padding: 35px 25px;
+      }
+
+      .slide h2 {
+        font-size: 1.8em;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation">
+    <!-- Slide 1: Title -->
+    <div class="slide title-slide active">
+      <div class="module-badge">MODULE 2</div>
+      <h1>💼 Core Administrative & Productivity Skills</h1>
+      <div class="subtitle">The Foundation of Every Successful VA</div>
+    </div>
+
+    <!-- Slide 2: Module Overview -->
+    <div class="slide">
+      <h2>Module 2 Overview</h2>
+      <div class="content-scroll">
+        <p>This module covers the <strong>core foundation</strong> of most Virtual Assistant roles — the administrative and productivity skills that keep businesses running smoothly.</p>
+        
+        <div class="highlight-box">
+          <h3>📚 What You'll Master:</h3>
+          <ul>
+            <li>Email Management (Inbox Zero methodology)</li>
+            <li>Calendar and Scheduling Management</li>
+            <li>Document and File Management</li>
+            <li>Data Entry and Research</li>
+            <li>Travel Planning and Logistics</li>
+          </ul>
+        </div>
+
+        <div class="best-practices-box">
+          <strong>💡 Why These Skills Matter:</strong>
+          <p>These day-to-day operational tasks build trust with clients and demonstrate your reliability, organization, and efficiency. Master these, and you become indispensable!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: Email Management -->
+    <div class="slide section-intro">
+      <div class="section-icon">✉️</div>
+      <h2>Email Management</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Mastering Inbox Zero for Professional Communication</p>
+    </div>
+
+    <!-- Slide 3: Email Management Intro -->
+    <div class="slide">
+      <h2>Why Email Management Matters</h2>
+      <div class="content-scroll">
+        <p>Email is one of the main communication channels for most clients. An unorganized inbox can lead to:</p>
+        
+        <div class="two-column">
+          <div class="highlight-box">
+            <h4>❌ Problems:</h4>
+            <ul>
+              <li>Missed opportunities</li>
+              <li>Poor response times</li>
+              <li>Unnecessary stress</li>
+              <li>Lost information</li>
+              <li>Damaged relationships</li>
+            </ul>
+          </div>
+
+          <div class="best-practices-box">
+            <h4>✅ Solutions:</h4>
+            <ul>
+              <li>Organized system</li>
+              <li>Quick response times</li>
+              <li>Clear priorities</li>
+              <li>Easy retrieval</li>
+              <li>Professional image</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="margin-top: 20px;"><strong>As a VA, mastering email management makes you an indispensable part of your client's workflow.</strong></p>
+      </div>
+    </div>
+
+    <!-- Slide 4: Email Key Responsibilities -->
+    <div class="slide">
+      <h2>Email Management: Key Responsibilities</h2>
+      <div class="content-scroll">
+        <h3><span class="icon">📂</span>Filtering & Organizing</h3>
+        <p>Create folders, labels, and filters to automatically categorize messages (e.g., "Urgent," "Payments," "Clients," "Follow-up")</p>
+
+        <h3><span class="icon">🎯</span>Prioritizing</h3>
+        <p>Use the Inbox Zero method — aim to process every email by reading, replying, archiving, or scheduling action steps</p>
+
+        <h3><span class="icon">✍️</span>Responding Professionally</h3>
+        <p>Draft clear, polite, and concise replies using professional email etiquette</p>
+
+        <h3><span class="icon">📋</span>Creating Templates</h3>
+        <p>Save time by creating reusable templates for common emails (meeting confirmations, thank-you replies, client introductions)</p>
+
+        <h3><span class="icon">🚩</span>Flagging & Following Up</h3>
+        <p>Mark important emails for follow-up and set reminders to check back if there's no reply</p>
+      </div>
+    </div>
+
+    <!-- Slide 5: Email Best Practices -->
+    <div class="slide">
+      <h2>Email Management: Best Practices</h2>
+      <div class="content-scroll">
+        <div class="best-practices-box">
+          <h3>🧠 Pro Tips:</h3>
+          <ul>
+            <li><strong>Check emails 2-3 times per day</strong> instead of constantly (reduces distractions and increases focus)</li>
+            <li><strong>Use filters and color coding</strong> in Gmail or Outlook for quick scanning</li>
+            <li><strong>Keep inbox under 50 emails</strong> whenever possible — aim for Inbox Zero daily</li>
+            <li><strong>Always double-check</strong> spelling, tone, and attachments before sending</li>
+            <li><strong>Respond within 24 hours</strong> even if it's just to acknowledge receipt</li>
+          </ul>
+        </div>
+
+        <div class="tools-box">
+          <h3>🔧 Useful Tools:</h3>
+          <ul>
+            <li><strong>Gmail / Outlook</strong> — Primary email platforms</li>
+            <li><strong>Spark</strong> — Smart email client with prioritization</li>
+            <li><strong>Boomerang / FollowUpThen</strong> — For reminders and follow-ups</li>
+            <li><strong>Grammarly</strong> — For checking grammar and tone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Calendar Management -->
+    <div class="slide section-intro">
+      <div class="section-icon">📅</div>
+      <h2>Calendar & Scheduling Management</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Keeping clients on top of their commitments</p>
+    </div>
+
+    <!-- Slide 6: Calendar Management -->
+    <div class="slide">
+      <h2>Calendar & Scheduling Management</h2>
+      <div class="content-scroll">
+        <p>Effective time management is crucial for busy entrepreneurs and executives. A VA helps clients stay on top of appointments, deadlines, and meetings — ensuring no overlaps or missed commitments.</p>
+
+        <h3>📅 Key Responsibilities:</h3>
+        <ul>
+          <li><strong>Calendar Setup & Maintenance:</strong> Create and organize multiple calendars (work, personal, project-based)</li>
+          <li><strong>Scheduling Meetings:</strong> Coordinate availability between multiple participants</li>
+          <li><strong>Time Zone Management:</strong> Schedule across regions using tools like World Time Buddy</li>
+          <li><strong>Reminders & Notifications:</strong> Set up event reminders for client and attendees</li>
+          <li><strong>Using Scheduling Tools:</strong> Manage booking systems like Calendly or Acuity Scheduling</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 7: Calendar Best Practices -->
+    <div class="slide">
+      <h2>Calendar Management: Best Practices</h2>
+      <div class="content-scroll">
+        <div class="best-practices-box">
+          <h3>💡 Pro Tips:</h3>
+          <ul>
+            <li><strong>Always confirm appointments</strong> via email or calendar invite</li>
+            <li><strong>Include meeting links, location, and agenda</strong> in every invitation</li>
+            <li><strong>Leave buffer time</strong> (10-15 minutes) between meetings to avoid overlap</li>
+            <li><strong>Track recurring events</strong> (weekly check-ins, monthly reports)</li>
+            <li><strong>Send reminder emails</strong> 24 hours before important meetings</li>
+          </ul>
+        </div>
+
+        <div class="tools-box">
+          <h3>🔧 Useful Tools:</h3>
+          <ul>
+            <li><strong>Google Calendar / Outlook Calendar</strong> — Primary scheduling</li>
+            <li><strong>Calendly</strong> — Automated scheduling links</li>
+            <li><strong>Acuity Scheduling</strong> — Great for service-based businesses</li>
+            <li><strong>World Time Buddy</strong> — For managing global time zones</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Document Management -->
+    <div class="slide section-intro">
+      <div class="section-icon">📂</div>
+      <h2>Document & File Management</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Organizing the digital workspace</p>
+    </div>
+
+    <!-- Slide 8: Document Management -->
+    <div class="slide">
+      <h2>Document & File Management</h2>
+      <div class="content-scroll">
+        <p>As a VA, you'll handle a client's digital workspace — creating, storing, and organizing essential documents for smooth operations.</p>
+
+        <h3>📂 Key Responsibilities:</h3>
+        <ul>
+          <li><strong>Creating Documents:</strong> Draft reports, meeting notes, spreadsheets, and presentations</li>
+          <li><strong>Organizing Files:</strong> Maintain clear folder structures (e.g., ClientName > 2025 Projects > Reports)</li>
+          <li><strong>Version Control:</strong> Track document revisions and ensure latest version is used</li>
+          <li><strong>Cloud Collaboration:</strong> Work in real-time using Google Workspace or Microsoft 365</li>
+          <li><strong>Backup and Security:</strong> Regularly back up important files to cloud or external drives</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 9: Document Best Practices -->
+    <div class="slide">
+      <h2>Document Management: Best Practices</h2>
+      <div class="content-scroll">
+        <div class="best-practices-box">
+          <h3>🧠 Pro Tips:</h3>
+          <ul>
+            <li><strong>Use consistent naming conventions:</strong><br>Monthly_Report_March2025.xlsx</li>
+            <li><strong>Restrict access appropriately:</strong> Use "View Only" or "Comment" permissions for sensitive files</li>
+            <li><strong>Archive old files monthly</strong> to keep workspace clutter-free</li>
+            <li><strong>Label shared folders clearly</strong> so clients can locate files easily</li>
+            <li><strong>Create a README file</strong> explaining folder structure for new team members</li>
+          </ul>
+        </div>
+
+        <div class="tools-box">
+          <h3>🔧 Useful Tools:</h3>
+          <ul>
+            <li><strong>Google Workspace</strong> — Docs, Sheets, Slides, Drive</li>
+            <li><strong>Microsoft Office</strong> — Word, Excel, PowerPoint, OneDrive</li>
+            <li><strong>Dropbox / Notion / ClickUp / Trello</strong> — File and project management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Data Entry & Research -->
+    <div class="slide section-intro">
+      <div class="section-icon">🧾</div>
+      <h2>Data Entry & Research</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Accuracy and attention to detail</p>
+    </div>
+
+    <!-- Slide 10: Data Entry & Research -->
+    <div class="slide">
+      <h2>Data Entry & Research</h2>
+      <div class="content-scroll">
+        <p>Data entry and research are among the most common and essential VA tasks. These require <strong>accuracy, speed, and attention to detail</strong> — as errors in data can affect serious business decisions.</p>
+
+        <h3>🧾 Key Responsibilities:</h3>
+        <ul>
+          <li><strong>Data Entry:</strong> Input customer details, invoices, leads, or survey results into databases or spreadsheets</li>
+          <li><strong>Web Research:</strong> Gather market data, contact information, competitor analysis, or content ideas</li>
+          <li><strong>Data Cleaning:</strong> Remove duplicates, fix formatting inconsistencies, or update outdated records</li>
+          <li><strong>Report Compilation:</strong> Summarize research findings in clear, easy-to-read reports or presentations</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 11: Data Entry Best Practices -->
+    <div class="slide">
+      <h2>Data Entry: Best Practices & Tools</h2>
+      <div class="content-scroll">
+        <div class="best-practices-box">
+          <h3>🧠 Pro Tips:</h3>
+          <ul>
+            <li><strong>Always double-check entries</strong> for accuracy before submitting</li>
+            <li><strong>Use keyboard shortcuts</strong> (Ctrl+C, Ctrl+V, Tab, etc.) to speed up tasks</li>
+            <li><strong>Validate sources when researching</strong> — prioritize official websites, industry reports, and trusted publications</li>
+            <li><strong>Keep research data well-organized</strong> with proper citations and source links</li>
+            <li><strong>Use data validation</strong> in spreadsheets to prevent entry errors</li>
+          </ul>
+        </div>
+
+        <div class="tools-box">
+          <h3>🔧 Useful Tools:</h3>
+          <ul>
+            <li><strong>Google Sheets / Microsoft Excel</strong> — Data organization</li>
+            <li><strong>Airtable / Notion / ClickUp</strong> — Structured databases</li>
+            <li><strong>Hunter.io / LinkedIn / Google Advanced Search</strong> — Finding leads or contacts</li>
+            <li><strong>ChatGPT & AI tools</strong> — Summarize and organize large volumes of information</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Travel Planning -->
+    <div class="slide section-intro">
+      <div class="section-icon">✈️</div>
+      <h2>Travel Planning & Logistics</h2>
+      <p style="font-size: 1.3em; opacity: 0.95;">Making travel stress-free for clients</p>
+    </div>
+
+    <!-- Slide 12: Travel Planning -->
+    <div class="slide">
+      <h2>Travel Planning & Logistics</h2>
+      <div class="content-scroll">
+        <p>Many clients — especially executives, coaches, or consultants — travel frequently. A VA who can efficiently manage travel arrangements saves the client <strong>stress, time, and costly mistakes</strong>.</p>
+
+        <h3>✈️ Key Responsibilities:</h3>
+        <ul>
+          <li><strong>Flight Bookings:</strong> Find affordable and convenient options (considering stopovers, luggage, and cancellation policies)</li>
+          <li><strong>Accommodation:</strong> Research and book suitable hotels or short-term rentals close to meeting locations</li>
+          <li><strong>Transportation:</strong> Arrange airport pickups, rental cars, or local ride services</li>
+          <li><strong>Itinerary Creation:</strong> Compile all travel details into one easy-to-read document</li>
+          <li><strong>Expense Management:</strong> Record and track travel costs for reimbursement or tax reporting</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 13: Travel Best Practices -->
+    <div class="slide">
+      <h2>Travel Planning: Best Practices & Tools</h2>
+      <div class="content-scroll">
+        <div class="best-practices-box">
+          <h3>💡 Pro Tips:</h3>
+          <ul>
+            <li><strong>Confirm every booking in writing</strong> and save all receipts</li>
+            <li><strong>Share itineraries</strong> in both PDF and calendar invite formats</li>
+            <li><strong>Always have a Plan B</strong> — know refund policies, nearby hotel alternatives, and emergency contacts</li>
+            <li><strong>Use loyalty programs</strong> (airlines, hotels) to help clients earn rewards</li>
+            <li><strong>Book early</strong> for better rates and availability</li>
+          </ul>
+        </div>
+
+        <div class="tools-box">
+          <h3>🔧 Useful Tools:</h3>
+          <ul>
+            <li><strong>Google Flights / Skyscanner / Kayak</strong> — Flight comparisons</li>
+            <li><strong>Booking.com / Airbnb / Expedia</strong> — Accommodations</li>
+            <li><strong>TripIt / TravelPerk / Travefy</strong> — Itinerary creation</li>
+            <li><strong>Expensify / QuickBooks / Zoho Expense</strong> — Expense tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 14: Summary Table -->
+    <div class="slide">
+      <h2>Module 2 Summary</h2>
+      <div class="content-scroll">
+        <table class="summary-table">
+          <tr>
+            <th>Skill Area</th>
+            <th>Purpose</th>
+            <th>Key Tools</th>
+            <th>Success Tip</th>
+          </tr>
+          <tr>
+            <td><strong>Email Management</strong></td>
+            <td>Keep communication organized and professional</td>
+            <td>Gmail, Outlook, Boomerang</td>
+            <td>Aim for Inbox Zero daily</td>
+          </tr>
+          <tr>
+            <td><strong>Calendar Management</strong></td>
+            <td>Ensure smooth scheduling and time efficiency</td>
+            <td>Google Calendar, Calendly</td>
+            <td>Always confirm meetings</td>
+          </tr>
+          <tr>
+            <td><strong>File Management</strong></td>
+            <td>Maintain organized, secure records</td>
+            <td>Google Drive, OneDrive</td>
+            <td>Use clear naming conventions</td>
+          </tr>
+          <tr>
+            <td><strong>Data Entry & Research</strong></td>
+            <td>Support data-driven decision making</td>
+            <td>Excel, Notion, Hunter.io</td>
+            <td>Verify data accuracy twice</td>
+          </tr>
+          <tr>
+            <td><strong>Travel Planning</strong></td>
+            <td>Simplify logistics for clients on the go</td>
+            <td>Skyscanner, TripIt, Expensify</td>
+            <td>Plan ahead, confirm all details</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Slide 15: Career Progression -->
+    <div class="slide">
+      <h2>🚀 Career Progression</h2>
+      <div class="content-scroll">
+        <div class="highlight-box">
+          <h3>Pro Tip: Building Your Career</h3>
+          <p>Mastering these core skills builds the foundation for higher-level VA roles:</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>👔 Executive VA</h4>
+          <p>Managing business operations and confidential information for C-level executives</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>📊 Project Coordinator</h4>
+          <p>Overseeing team workflows, managing timelines, and coordinating cross-functional projects</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>⚙️ Operations Assistant</h4>
+          <p>Handling logistics, reporting, and systems management for growing businesses</p>
+        </div>
+
+        <p style="margin-top: 20px; text-align: center; font-size: 1.1em;"><strong>Master the basics first, then specialize for higher rates and better opportunities!</strong></p>
+      </div>
+    </div>
+
+    <!-- Final Slide -->
+    <div class="slide title-slide">
+      <h1>Key Takeaways</h1>
+      <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+        <ul style="font-size: 1.2em; line-height: 2;">
+          <li>✉️ Master email management to become indispensable</li>
+          <li>📅 Effective scheduling saves clients time and stress</li>
+          <li>📂 Organized files create professional credibility</li>
+          <li>🧾 Accurate data entry supports better decisions</li>
+          <li>✈️ Seamless travel planning builds trust</li>
+        </ul>
+        <p style="margin-top: 30px; font-size: 1.3em; text-align: center;"><strong>These are the skills that keep businesses running!</strong></p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="slide-counter">
+      <span id="current-slide">1</span> / <span id="total-slides">17</span>
+    </div>
+    
+    <div class="nav-buttons">
+      <button id="prev-btn" onclick="changeSlide(-1)">← Previous</button>
+      <button id="next-btn" onclick="changeSlide(1)">Next →</button>
+    </div>
+  </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+    
+        document.getElementById('total-slides').innerText = totalSlides;
+    
+        function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        document.getElementById('current-slide').innerText = index + 1;
+        document.getElementById('prev-btn').disabled = index === 0;
+        document.getElementById('next-btn').disabled = index === totalSlides - 1;
+        }
+    
+        function changeSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = 0;
+        if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+        showSlide(currentSlide);
+        }
+    
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
+
