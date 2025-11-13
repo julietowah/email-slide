@@ -605,27 +605,6 @@
         }
       });
     });
-
-    // Add your actual module links here
-    const moduleLinks = {
-      1: 'introduction.html',
-      2: 'module2.html',
-      3: 'your-module-3-url.html',
-      4: 'your-module-4-url.html',
-      5: 'your-module-5-url.html',
-      6: 'your-module-6-url.html'
-    };
-
-    // Update module card links
-    document.querySelectorAll('.module-card').forEach((card, index) => {
-      card.addEventListener('click', function(e) {
-        e.preventDefault();
-        const moduleNum = index + 1;
-        // Replace the alert with actual navigation
-        // window.location.href = moduleLinks[moduleNum];
-        alert(`Module ${moduleNum} - Replace this with your actual link:\n${moduleLinks[moduleNum]}`);
-      });
-    });
   </script>
 </body>
 </html>
